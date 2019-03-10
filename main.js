@@ -7,14 +7,37 @@ var screen_height;
 var column_width;
 
 var max_value = 10;
-var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+//var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 var data_b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+
+
+
 function swap(i, j, data) {
-	var value = data[i];
+    var value = data[i];
 	data[i] = data[j];
-	data[j] = value;
+    data[j] = value;
+
 }
+
+
+function insertion_sort(data){
+    var i = 1;
+
+    while (i < data.length){
+        var j = i;
+        while (j > 0 && data[j - 1] > data[j]){
+            
+            swap(j, j-1, data);
+            
+        }
+        i += 1;
+    }
+}
+
+
 
 function draw_data(data, offset, colour) {
 	
@@ -67,7 +90,12 @@ function draw()
 	ctx.clearRect(0, 0, screen_width, screen_height);
 
 	draw_data(data_a, 0, "red");
-	draw_data(data_b, screen_width / 2, "blue");
+    draw_data(data_b, screen_width / 2, "blue");
+
+    
+
+    insertion_sort(data_a);
+    //clearInterval(intervalID)
 
 	requestAnimationFrame(draw);
 }
