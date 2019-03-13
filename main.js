@@ -10,7 +10,9 @@ var max_value = 10;
 
 //var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-var data_b = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
 
 
 
@@ -19,8 +21,34 @@ function swap(i, j, data) {
     var value = data[i];
 	data[i] = data[j];
     data[j] = value;
-
 }
+
+
+function quicksort(data, low, high){
+    if (low < high) {
+        var part = partition(data, low, high);
+
+        quicksort(data, low, part - 1);
+        quicksort(data, part + 1, high);
+    }
+}
+
+function partition(data, low, high) {
+    var pivot = data[high];
+
+    var i = low - 1;
+
+    for (var j = low; j <= high - 1; j++) {
+        if (data[j] <= pivot) {
+            i++;
+            swap(i, j, data);
+        }
+    }
+    swap(i + 1, high, data);
+    return i + 1;
+}
+
+
 
 function bubble_sort(data){
     var swapped;
@@ -108,7 +136,8 @@ function draw()
     
 
     //insertion_sort(data_a);
-    bubble_sort(data_a);
+    //bubble_sort(data_a);
+    //quicksort(data_a, 0, data_a.length -1);
     //clearInterval(intervalID)
 
 	requestAnimationFrame(draw);
