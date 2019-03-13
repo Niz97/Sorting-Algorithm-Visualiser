@@ -22,7 +22,20 @@ function swap(i, j, data) {
 
 }
 
-
+function bubble_sort(data){
+    var swapped;
+    do {
+        swapped = false;
+        for(var i = 0; i < data.length - 1; i++){
+            if(data[i] > data [i + 1]){
+                var temp = data[i];
+                data[i] = data[i + 1];
+                data[i + 1] = temp;
+                swapped = true 
+            }
+        }
+    } while (swapped);
+}
 function insertion_sort(data){
     var i = 1;
 
@@ -94,7 +107,8 @@ function draw()
 
     
 
-    insertion_sort(data_a);
+    //insertion_sort(data_a);
+    bubble_sort(data_a);
     //clearInterval(intervalID)
 
 	requestAnimationFrame(draw);
