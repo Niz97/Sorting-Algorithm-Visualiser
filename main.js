@@ -6,13 +6,18 @@ var screen_height;
 
 var column_width;
 
-var max_value = 10;
+var max_value = 1000;
 
 //var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+var data_a = generate_random_array(1000);
+
+//var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var data_b = generate_random_array(1000);
 
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
+
+
 
 
 
@@ -64,6 +69,7 @@ function bubble_sort(data){
         }
     } while (swapped);
 }
+
 function insertion_sort(data){
     var i = 1;
 
@@ -76,6 +82,17 @@ function insertion_sort(data){
         }
         i += 1;
     }
+}
+
+function generate_random_array(size) {
+	var rand_arr = [];
+	
+	for (var i = 0; i < size; i++){
+		// return randoms number between 1 and 10
+		rand_arr.push(Math.floor(Math.random() * max_value + 1));
+	}
+
+	return rand_arr;
 }
 
 
@@ -130,15 +147,15 @@ function draw()
 {
 	ctx.clearRect(0, 0, screen_width, screen_height);
 
+
 	draw_data(data_a, 0, "red");
     draw_data(data_b, screen_width / 2, "blue");
 
-    
-
-    //insertion_sort(data_a);
+    insertion_sort(data_a);
+    bubble_sort(data_b);
     //bubble_sort(data_a);
     //quicksort(data_a, 0, data_a.length -1);
-    //clearInterval(intervalID)
+
 
 	requestAnimationFrame(draw);
 }
