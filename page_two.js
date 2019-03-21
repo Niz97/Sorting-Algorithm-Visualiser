@@ -28,16 +28,16 @@ function swap(i, j, data) {
 }
 
 
-function quicksort(data, low, high){
+function quicksort(data, low, high, all_swaps){
     if (low < high) {
-        var part = partition(data, low, high);
+        var part = partition(data, low, high, all_swaps);
 
-        quicksort(data, low, part - 1);
-        quicksort(data, part + 1, high);
+        quicksort(data, low, part - 1, all_swaps);
+        quicksort(data, part + 1, high, all_swaps);
     }
 }
 
-function partition(data, low, high) {
+function partition(data, low, high, all_swaps) {
     var pivot = data[high];
 
     var i = low - 1;
@@ -46,9 +46,11 @@ function partition(data, low, high) {
         if (data[j] <= pivot) {
             i++;
             swap(i, j, data);
+            all_swaps.push([i, j]);
         }
     }
     swap(i + 1, high, data);
+    all_swaps.push([i + 1, high]);
     return i + 1;
 }
 
