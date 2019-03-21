@@ -45,19 +45,25 @@ function partition(data, low, high, all_swaps) {
     for (var j = low; j <= high - 1; j++) {
         if (data[j] <= pivot) {
             i++;
-            swap(i, j, data);
-            all_swaps.push([i, j]);
+            if (i != j) {
+            	swap(i, j, data);
+            	all_swaps.push([i, j]);
+            } 
         }
     }
-    swap(i + 1, high, data);
-    all_swaps.push([i + 1, high]);
+    if (i + 1 != high){
+    	swap(i + 1, high, data);
+	    all_swaps.push([i + 1, high]);
+	    
+    }
     return i + 1;
 }
 
 
 
-function bubble_sort(data){
+function bubble_sort(data, all_swaps){
     var swapped;
+   
     do {
         swapped = false;
         for(var i = 0; i < data.length - 1; i++){
@@ -65,6 +71,8 @@ function bubble_sort(data){
                 var temp = data[i];
                 data[i] = data[i + 1];
                 data[i + 1] = temp;
+
+                all_swaps.push([i, i + 1]);
                 swapped = true 
             }
         }
@@ -144,18 +152,47 @@ function draw_data(data, offset, colour) {
 	ctx.closePath();
 }
 
-function draw()
+// keep track of quick sort swaps
+var all_swaps_quick = [];
+var swap_pos_quick = 0;
+
+var all_swaps_bubb = [];
+var swap_pos_bubb = 0;
+
+var lastTime = null;
+function draw(timestamp)
 {
+	if (lastTime == null) {
+    	lastTime = timestamp;
+	}
+
+	// check if second has passed
+	if (timestamp - lastTime > 1000) {
+
+		// quick sort | data_a
+	    if (swap_pos_quick < all_swaps_quick.length) {
+	        var swap_info = all_swaps_quick[swap_pos_quick];
+	        swap(swap_info[0], swap_info[1], data_a);
+	        swap_pos_quick++;
+	    }
+
+	    // bubble sort | data_b
+	    if (swap_pos_bubb < all_swaps_bubb.length) {
+	        var swap_info = all_swaps_bubb[swap_pos_bubb];
+	        swap(swap_info[0], swap_info[1], data_b);
+	        swap_pos_bubb++;
+	    }
+
+	    lastTime = timestamp;
+	}
+
 	ctx.clearRect(0, 0, screen_width, screen_height);
 
 
 	draw_data(data_a, 0, "red");
     draw_data(data_b, screen_width / 2, "blue");
 
-    insertion_sort(data_a);
-    bubble_sort(data_b);
-    //bubble_sort(data_a);
-    //quicksort(data_a, 0, data_a.length -1);
+ 
 
 
 	requestAnimationFrame(draw);
@@ -172,6 +209,14 @@ window.addEventListener('load', function()
 	screen_height = canvas.height;
 
 	column_width = screen_width / data_a.length / 2;
+
+
+	data_a = generate_random_array(10);
+	// copies data_a to data_b
+	data_b = data_a.slice();
+
+	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
+	bubble_sort(data_b.slice(), all_swaps_bubb);
 
 	draw();
 });
