@@ -17,10 +17,6 @@ var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
 
 
-
-
-
-
 function swap(i, j, data) {
     var value = data[i];
 	data[i] = data[j];

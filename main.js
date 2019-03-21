@@ -18,10 +18,6 @@ var data_b = generate_random_array(1000);
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
 
 
-
-
-
-
 function swap(i, j, data) {
     var value = data[i];
 	data[i] = data[j];
