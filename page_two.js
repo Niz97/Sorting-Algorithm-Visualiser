@@ -9,12 +9,26 @@ var column_width;
 var max_value = 10;
 
 //var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+var data_a;
+//var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var data_b;
 
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
+
+
+
+function generate_random_array(size) {
+	var rand_arr = [];
+	
+	for (var i = 0; i < size; i++){
+		// return randoms number between 1 and 10
+		rand_arr.push(Math.floor(Math.random() * max_value + 1));
+	}
+
+	return rand_arr;
+}
+
+
 
 
 function swap(i, j, data) {
@@ -51,19 +65,18 @@ function partition(data, low, high) {
 
 
 function bubble_sort(data){
-    var swapped;
-    do {
-        swapped = false;
-        for(var i = 0; i < data.length - 1; i++){
-            if(data[i] > data [i + 1]){
-                var temp = data[i];
-                data[i] = data[i + 1];
-                data[i + 1] = temp;
-                swapped = true 
-            }
+
+    for(var i = 0; i < data.length - 1; i++){
+        if(data[i] > data [i + 1]){
+            var temp = data[i];
+            data[i] = data[i + 1];
+            data[i + 1] = temp;
+            return true;
         }
-    } while (swapped);
+    }
+    return false;
 }
+
 
 function insertion_sort(data){
     var i = 1;
@@ -138,19 +151,26 @@ function draw_data(data, offset, colour) {
 	ctx.closePath();
 }
 
-function draw()
+var lastTime = null;
+function draw(timestamp)
 {
+	if (lastTime == null) {
+		lastTime = timestamp;
+	}
+
+	// check if second has passed
+	if (timestamp - lastTime > 1000) {
+
+		//insertion_sort(data_a);
+		bubble_sort(data_b);
+		lastTime = timestamp;
+	}
+
 	ctx.clearRect(0, 0, screen_width, screen_height);
 
 
 	draw_data(data_a, 0, "red");
     draw_data(data_b, screen_width / 2, "blue");
-
-    insertion_sort(data_a);
-    bubble_sort(data_b);
-    //bubble_sort(data_a);
-    //quicksort(data_a, 0, data_a.length -1);
-
 
 	requestAnimationFrame(draw);
 }
@@ -167,5 +187,9 @@ window.addEventListener('load', function()
 
 	column_width = screen_width / data_a.length / 2;
 
-	draw();
+	data_a = generate_random_array(10);
+	data_b = generate_random_array(10);
+
+
+	requestAnimationFrame(draw);
 });

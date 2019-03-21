@@ -52,18 +52,16 @@ function partition(data, low, high) {
 
 
 function bubble_sort(data){
-    var swapped;
-    do {
-        swapped = false;
-        for(var i = 0; i < data.length - 1; i++){
-            if(data[i] > data [i + 1]){
-                var temp = data[i];
-                data[i] = data[i + 1];
-                data[i + 1] = temp;
-                swapped = true 
-            }
+
+    for(var i = 0; i < data.length - 1; i++){
+        if(data[i] > data [i + 1]){
+            var temp = data[i];
+            data[i] = data[i + 1];
+            data[i + 1] = temp;
+            return true;
         }
-    } while (swapped);
+    }
+    return false;
 }
 
 function insertion_sort(data){
