@@ -84,6 +84,11 @@ function insertion_sort(data){
     }
 }
 
+
+
+
+
+
 function generate_random_array(size) {
 	var rand_arr = [];
 	

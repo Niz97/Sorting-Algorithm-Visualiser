@@ -9,17 +9,12 @@ var column_width;
 var max_value = 10;
 
 //var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var data_a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-var data_b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+var data_a;
+var data_b;
+var data_c;
+var data_d;
 
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
-
-
-
-
-
 
 function swap(i, j, data) {
     var value = data[i];
@@ -80,6 +75,7 @@ function bubble_sort(data, all_swaps){
 }
 
 function insertion_sort(data){
+	
     var i = 1;
 
     while (i < data.length){
@@ -93,6 +89,24 @@ function insertion_sort(data){
     }
 }
 
+
+
+// function insertion_sort(array) {
+// 	var length = array.length;
+	
+// 	for(var i = 1, j; i < length; i++) {
+// 	  var temp = array[i];
+// 	  for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
+// 		array[j+1] = array[j];
+// 	  }
+// 	  array[j+1] = temp;
+// 	}
+	
+// 	return array;
+//   }
+
+
+
 function generate_random_array(size) {
 	var rand_arr = [];
 	
@@ -104,7 +118,42 @@ function generate_random_array(size) {
 	return rand_arr;
 }
 
+function mergeSort (arr) {
+	if (arr.length === 1) {
+	  // return once we hit an array with a single item
+	  return arr
+	}
+  
+	const middle = Math.floor(arr.length / 2) // get the middle item of the array rounded down
+	const left = arr.slice(0, middle) // items on the left side
+	const right = arr.slice(middle) // items on the right side
+  
+	return merge(
+	  mergeSort(left),
+	  mergeSort(right)
+	)
+  }
+  
+  // compare the arrays item by item and return the concatenated result
+  function merge (left, right) {
+	let result = []
+	let indexLeft = 0
+	let indexRight = 0
+  
+	while (indexLeft < left.length && indexRight < right.length) {
+	  if (left[indexLeft] < right[indexRight]) {
+		result.push(left[indexLeft])
+		indexLeft++
+	  } else {
+		result.push(right[indexRight])
+		indexRight++
+	  }
+	}
+  
+	return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))
+  }
 
+  //console.log(mergeSort(data_a))
 
 function draw_data(data, offset, colour) {
 	
@@ -159,6 +208,9 @@ var swap_pos_quick = 0;
 var all_swaps_bubb = [];
 var swap_pos_bubb = 0;
 
+var all_swaps_insert = [];
+var swap_pos_insert = 0;
+
 var lastTime = null;
 function draw(timestamp)
 {
@@ -173,14 +225,24 @@ function draw(timestamp)
 	    if (swap_pos_quick < all_swaps_quick.length) {
 	        var swap_info = all_swaps_quick[swap_pos_quick];
 	        swap(swap_info[0], swap_info[1], data_a);
-	        swap_pos_quick++;
+			swap_pos_quick++;
+			//console.log("quick sort test");
 	    }
 
 	    // bubble sort | data_b
 	    if (swap_pos_bubb < all_swaps_bubb.length) {
 	        var swap_info = all_swaps_bubb[swap_pos_bubb];
 	        swap(swap_info[0], swap_info[1], data_b);
-	        swap_pos_bubb++;
+			swap_pos_bubb++;
+			//console.log("bubble sort test");
+		}
+
+		// inserion sort | data_c
+		if (swap_pos_insert < all_swaps_insert.length) {
+			var swap_info = all_swaps_insert[swap_pos_insert];
+	        swap(swap_info[0], swap_info[1], data_c);
+			swap_pos_insert++;
+			console.log("insertion sort test");
 	    }
 
 	    lastTime = timestamp;
@@ -190,11 +252,10 @@ function draw(timestamp)
 
 
 	draw_data(data_a, 0, "red");
-    draw_data(data_b, screen_width / 2, "blue");
-
- 
-
-
+	draw_data(data_b, screen_width / 4, "blue");
+	draw_data(data_c, screen_width / 2, "green");
+	draw_data(data_d, screen_width / (4/3), "yellow");
+	
 	requestAnimationFrame(draw);
 }
 
@@ -208,15 +269,20 @@ window.addEventListener('load', function()
 	screen_width = canvas.width;
 	screen_height = canvas.height;
 
-	column_width = screen_width / data_a.length / 2;
+	column_width = screen_width / max_value / 4;
 
 
 	data_a = generate_random_array(10);
-	// copies data_a to data_b
 	data_b = data_a.slice();
+	data_c = data_a.slice();
+	data_d = data_a.slice();
 
+	//mergeSort(data_a);
 	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
 	bubble_sort(data_b.slice(), all_swaps_bubb);
+	insertion_sort(data_c);
+	//insertion_sort(data_c.slice(), all_swaps_insert);
 
+	
 	draw();
 });
