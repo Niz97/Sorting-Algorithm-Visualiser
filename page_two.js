@@ -8,11 +8,11 @@ var column_width;
 
 var max_value = 10;
 
-//var data_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var data_a;
 var data_b;
 var data_c;
 var data_d;
+var cheese;
 
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
 
@@ -20,6 +20,24 @@ function swap(i, j, data) {
     var value = data[i];
 	data[i] = data[j];
     data[j] = value;
+}
+
+// https://www.geeksforgeeks.org/selection-sort/
+function selection_sort(data){
+
+	var arr_len = data.length;
+
+	for (var i = 0; i < arr_len - 1; i++){
+
+		var min_index = i;
+		for (var j = i + 1; j < arr_len; j++) {
+			if (data[j] < data[min_index])
+				min_index = j;
+		}
+
+		swap(i, min_index, data);
+		
+	}
 }
 
 
@@ -118,42 +136,6 @@ function generate_random_array(size) {
 	return rand_arr;
 }
 
-function mergeSort (arr) {
-	if (arr.length === 1) {
-	  // return once we hit an array with a single item
-	  return arr
-	}
-  
-	const middle = Math.floor(arr.length / 2) // get the middle item of the array rounded down
-	const left = arr.slice(0, middle) // items on the left side
-	const right = arr.slice(middle) // items on the right side
-  
-	return merge(
-	  mergeSort(left),
-	  mergeSort(right)
-	)
-  }
-  
-  // compare the arrays item by item and return the concatenated result
-  function merge (left, right) {
-	let result = []
-	let indexLeft = 0
-	let indexRight = 0
-  
-	while (indexLeft < left.length && indexRight < right.length) {
-	  if (left[indexLeft] < right[indexRight]) {
-		result.push(left[indexLeft])
-		indexLeft++
-	  } else {
-		result.push(right[indexRight])
-		indexRight++
-	  }
-	}
-  
-	return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))
-  }
-
-  //console.log(mergeSort(data_a))
 
 function draw_data(data, offset, colour) {
 	
@@ -276,6 +258,8 @@ window.addEventListener('load', function()
 	data_b = data_a.slice();
 	data_c = data_a.slice();
 	data_d = data_a.slice();
+	cheese = generate_random_array(10);
+
 
 	//mergeSort(data_a);
 	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
