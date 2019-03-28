@@ -63,10 +63,19 @@ function generate_random_array(size) {
 	return rand_arr;
 }
 
-  //console.log(mergeSort(data_a))
 
 function draw_data(data, offset, colour) {
 	
+
+	// assume no swaps are taking place
+	var swap_info = [-1, -1];
+	if (swap_pos_quick < all_swaps_quick.length) {
+
+		// if not at the end of the swaps array
+		// set it to the next swap position
+		swap_info = all_swaps_quick[swap_pos_quick];
+	}
+
 	// rectangle colour
 	ctx.fillStyle = colour;
 	// border colour
@@ -88,6 +97,15 @@ function draw_data(data, offset, colour) {
 		// e.g. data[3] = 5 * (600 / 10)
 		// bar 4 = 300 tall
 		var column_height = data[i] * screen_height / max_value;
+
+		// is the current position (i) a swap position?
+		// if so turn the bar green.
+		// if not stays red
+		if (i == swap_info[0] || i == swap_info[1]) {
+			ctx.fillStyle = "green";
+		} else {
+			ctx.fillStyle = "red";
+		}
 
 		// offset = how far away other bar chart should be
 		// (x, y, width, height)
@@ -129,6 +147,7 @@ function draw(timestamp)
 	    if (swap_pos_quick < all_swaps_quick.length) {
 	        var swap_info = all_swaps_quick[swap_pos_quick];
 	        swap(swap_info[0], swap_info[1], data_a);
+	        document.getElementById("quickOutput").innerHTML="Swapping " + swap_info[0] + " and " + swap_info[1];
 			swap_pos_quick++;
 			//console.log("quick sort test");
 	    }
