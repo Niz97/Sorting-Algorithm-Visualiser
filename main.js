@@ -12,7 +12,7 @@ var data_a;
 var data_b;
 var data_c;
 var data_d;
-var cheese;
+
 
 var test = [3, 5, 8, 9, 2, 1, 6, 7, 4, 0];
 
@@ -258,7 +258,6 @@ window.addEventListener('load', function()
 	data_b = data_a.slice();
 	data_c = data_a.slice();
 	data_d = data_a.slice();
-	cheese = generate_random_array(10);
 
 
 	//mergeSort(data_a);
