@@ -22,23 +22,6 @@ function swap(i, j, data) {
     data[j] = value;
 }
 
-// https://www.geeksforgeeks.org/selection-sort/
-function selection_sort(data){
-
-	var arr_len = data.length;
-
-	for (var i = 0; i < arr_len - 1; i++){
-
-		var min_index = i;
-		for (var j = i + 1; j < arr_len; j++) {
-			if (data[j] < data[min_index])
-				min_index = j;
-		}
-
-		swap(i, min_index, data);
-		
-	}
-}
 
 
 function quicksort(data, low, high, all_swaps){
@@ -72,6 +55,36 @@ function partition(data, low, high, all_swaps) {
     return i + 1;
 }
 
+function insertion_sort(data, all_swaps)
+{
+    for (var i = 0; i < data.length - 1; i++)
+    {
+    	console.log("i: " + i);
+        // find the lowest value to go in position 'i'
+        var min_pos = i;
+        console.log("min_pos: " + min_pos);
+        for (var j = i + 1; j < data.length; j++)
+        {
+            if (data[j] < data[min_pos])
+            {
+                // new smallest so far
+                min_pos = j;
+                console.log("New smallest min_pos: " + min_pos);
+            }
+        }
+        // min_pos now holds position of smallest value in the list (from i)
+ 
+        // if i was already the smallest, no further action needed
+        if (min_pos != i)
+        {
+            // move the data at min_pos to i
+            swap(i, min_pos, data);
+            all_swaps.push([i, min_pos]);
+        }
+    }
+}
+
+
 
 
 function bubble_sort(data, all_swaps){
@@ -92,37 +105,32 @@ function bubble_sort(data, all_swaps){
     } while (swapped);
 }
 
-function insertion_sort(data){
-	
-    var i = 1;
 
-    while (i < data.length){
-        var j = i;
-        while (j > 0 && data[j - 1] > data[j]){
-            
-            swap(j, j-1, data);
-            
-        }
-        i += 1;
-    }
+
+function ins_old(data){
+	var key, j;
+	var dataLen = data.length
+
+	for (var i = 1; i < dataLen; i++) {
+		// current element
+		key = data[i];
+
+		// previous element
+		j = i - 1;
+
+		// while the previous element > current element
+		while (j >= 0 && data[j] > key) {
+			
+
+			data[j + 1] = data[j];
+			j = j - 1;
+			
+		}
+
+		data[j + 1] = key;
+		
+	}
 }
-
-
-
-// function insertion_sort(array) {
-// 	var length = array.length;
-	
-// 	for(var i = 1, j; i < length; i++) {
-// 	  var temp = array[i];
-// 	  for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
-// 		array[j+1] = array[j];
-// 	  }
-// 	  array[j+1] = temp;
-// 	}
-	
-// 	return array;
-//   }
-
 
 
 function generate_random_array(size) {
@@ -224,7 +232,7 @@ function draw(timestamp)
 			var swap_info = all_swaps_insert[swap_pos_insert];
 	        swap(swap_info[0], swap_info[1], data_c);
 			swap_pos_insert++;
-			console.log("insertion sort test");
+
 	    }
 
 	    lastTime = timestamp;
@@ -264,7 +272,7 @@ window.addEventListener('load', function()
 	//mergeSort(data_a);
 	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
 	bubble_sort(data_b.slice(), all_swaps_bubb);
-	insertion_sort(data_c);
+	insertion_sort(data_c.slice(), all_swaps_insert);
 	//insertion_sort(data_c.slice(), all_swaps_insert);
 
 	
