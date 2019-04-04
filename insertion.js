@@ -17,35 +17,74 @@ function swap(i, j, data) {
     data[j] = value;
 }
 
-function insertion_sort(data, all_swaps)
-{
-    for (var i = 0; i < data.length - 1; i++)
-    {
-    	console.log("i: " + i);
-        // find the lowest value to go in position 'i'
-        var min_pos = i;
-        console.log("min_pos: " + min_pos);
-        for (var j = i + 1; j < data.length; j++)
-        {
-            if (data[j] < data[min_pos])
-            {
-                // new smallest so far
-                min_pos = j;
-                console.log("New smallest min_pos: " + min_pos);
-            }
-        }
-        // min_pos now holds position of smallest value in the list (from i)
- 
-        // if i was already the smallest, no further action needed
-        if (min_pos != i)
-        {
-            // move the data at min_pos to i
-            swap(i, min_pos, data);
-            all_swaps.push([i, min_pos]);
-        }
-    }
+function log_with_index(data) {
+	var str = "";
+	for (var i = 0; i < data.length; i++) {
+		if (i != 0) str += ", ";
+		str += "#" + i + "=" + data[i];
+	}
+	console.log("{", str, "}")
 }
 
+function selection_sort(data, all_swaps)
+{
+	for (var i = 0; i < data.length - 1; i++)
+	{
+		log_with_index(data);
+		console.log("trying to find the smallest value from", i, "onwards")
+		console.log("gonna assume it's at #" + i + "=" + data[i]);
+		// find the lowest value to go in position 'i'
+		var min_pos = i;
+		for (var j = i + 1; j < data.length; j++)
+		{
+			if (data[j] < data[min_pos])
+			{
+				console.log("wait, no, it's at #" + j + "=" + data[j]);
+				// new smallest so far
+				min_pos = j;
+			}
+		}
+		// min_pos now holds position of smallest value in the list (from i)
+		console.log("okay, it's definitely that")
+
+		// if i was already the smallest, no further action needed
+		if (min_pos != i)
+		{
+			console.log("gonna swap pos #" + i + "=" + data[i] + " with pos #" + min_pos + "=" + data[min_pos])
+			// move the data at min_pos to i
+			swap(i, min_pos, data);
+			all_swaps.push([i, min_pos]);
+		} else {
+			console.log("well it's already in the right place so cool")
+		}
+	}
+	log_with_index(data);
+}
+
+
+function ins(data) {
+
+	for (var i = 0; i < data.length; i++) {
+
+		// assume i is smallest value
+		var min_pos = i;
+		console.log("min_pos: " + min_pos);
+
+		// next element along
+		for (var j = i + 1; j < data.length; j++) {
+			
+			// if the next element along is less than min_pos
+			// new lowest value for min_pos found
+			if (data[j] < min_pos) {
+				min_pos = j;
+				console.log("New smallest min_pos: " + min_pos);
+			}
+		}
+		if (min_pos != i) {
+			swap(min_pos, i, data);
+		}
+	}
+}
 
 function generate_random_array(size) {
 	var rand_arr = [];
