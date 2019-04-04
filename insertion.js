@@ -17,28 +17,34 @@ function swap(i, j, data) {
     data[j] = value;
 }
 
-// geeks for geeks
-function insertion_sort(data){
-	var key, j;
-	var dataLen = data.length
-
-	for (var i = 1; i < dataLen; i++) {
-		// current element
-		key = data[i];
-		// previous element
-		j = i - 1;
-
-		// while the previous element > current element
-		while (j >= 0 && data[j] > key) {
-			
-			data[j + 1] = data[j];
-			j = j - 1;
-		}
-
-		data[j + 1] = key;
-	}
+function insertion_sort(data, all_swaps)
+{
+    for (var i = 0; i < data.length - 1; i++)
+    {
+    	console.log("i: " + i);
+        // find the lowest value to go in position 'i'
+        var min_pos = i;
+        console.log("min_pos: " + min_pos);
+        for (var j = i + 1; j < data.length; j++)
+        {
+            if (data[j] < data[min_pos])
+            {
+                // new smallest so far
+                min_pos = j;
+                console.log("New smallest min_pos: " + min_pos);
+            }
+        }
+        // min_pos now holds position of smallest value in the list (from i)
+ 
+        // if i was already the smallest, no further action needed
+        if (min_pos != i)
+        {
+            // move the data at min_pos to i
+            swap(i, min_pos, data);
+            all_swaps.push([i, min_pos]);
+        }
+    }
 }
-
 
 
 function generate_random_array(size) {
@@ -58,11 +64,11 @@ function draw_data(data, offset, colour) {
 
 	// assume no swaps are taking place
 	var swap_info = [-1, -1];
-	if (swap_pos_quick < all_swaps_quick.length) {
+	if (swap_pos_insert < all_swaps_insert.length) {
 
 		// if not at the end of the swaps array
 		// set it to the next swap position
-		swap_info = all_swaps_quick[swap_pos_quick];
+		swap_info = all_swaps_insert[swap_pos_insert];
 	}
 
 	// rectangle colour
@@ -119,8 +125,8 @@ function draw_data(data, offset, colour) {
 }
 
 // keep track of quick sort swaps
-var all_swaps_quick = [];
-var swap_pos_quick = 0;
+var all_swaps_insert = [];
+var swap_pos_insert = 0;
 
 var lastTime = null;
 function draw(timestamp)
@@ -130,15 +136,15 @@ function draw(timestamp)
 	}
 
 	// check if second has passed
-	if (timestamp - lastTime > 1000) {
+	if (timestamp - lastTime > 2000) {
 
-		// quick sort | data_a
-	    if (swap_pos_quick < all_swaps_quick.length) {
-	        var swap_info = all_swaps_quick[swap_pos_quick];
+		// inserion sort | data_c
+		if (swap_pos_insert < all_swaps_insert.length) {
+			var swap_info = all_swaps_insert[swap_pos_insert];
+			document.getElementById("insertionOutput").innerHTML= "Swapping " + swap_info[0] + " and " + swap_info[1];
 	        swap(swap_info[0], swap_info[1], data_a);
-	        document.getElementById("quickOutput").innerHTML="Swapping " + swap_info[0] + " and " + swap_info[1];
-			swap_pos_quick++;
-			//console.log("quick sort test");
+			swap_pos_insert++;
+
 	    }
 
 	    lastTime = timestamp;
@@ -167,9 +173,7 @@ window.addEventListener('load', function()
 
 	data_a = generate_random_array(max_value);
 	
-	//quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
-
-
+	insertion_sort(data_a.slice(), all_swaps_insert);
 	
 	draw();
 });
