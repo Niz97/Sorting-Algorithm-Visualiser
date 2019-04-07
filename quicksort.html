@@ -5,34 +5,39 @@
 	<script src="quicksort.js"></script>
 </head>
 <body>
-<div> <h1> Quicksort! </h1> </div>
-<p><a href="index.html">Home</a> 
-<p><a href="page_two.html">Page 2</a> 
-<p><a href="insertion.html">Insertionsort</a>
-<p><a href="bubble.html">Bubblesort</a></p> 
-<p><a href="selection.html">Selection sort</a></p>
+<!--NAVIGATION-->
+<ul class="ul">
+	<li class="li"><a class="a" href="index.html">Home</a></li>
+	<li class="li"><a class="a" href="page_two.html">Page Two</a></li>
+	<li class="li"><a class="a" href="quicksort.html">Quicksort</a></li>
+</ul>
+<!--NAVIGATION-->
+
+<section class="headingwrapper">
+  <div  class="headingbox">
+    <div>
+      <h1 class="headingtext">Quick Sort!</h1>
+    </div>
+  </div>
+</section>
+
+<!--<p><a href="index.html">Home</a> 
+<p><a href="page_two.html">Page 2</a>
+-->
+<section class="canvaswrapper">
+	<canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;">
+</canvas>
+</section> 
 
 
-	
-<canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
-
-
-
+<section class="counterwrapper">
+	<div id="quickOutput"> </div>
+</section>
 
 <div id="quickOutput"></div>
 <div id="swapLength"></div>
 
 <style type="text/css">
-
-	canvas {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-   
-}
-
 	#quickOutput {
 	    font-size: 100px;
 }
