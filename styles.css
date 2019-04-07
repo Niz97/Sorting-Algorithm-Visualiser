@@ -78,13 +78,6 @@ body {
   right: 0;
 }
 
-.counterwrappertwo{
-  background-color: black;
-  position: relative;
-  width: 100%
-  right: 0;
-}
-
 #quickOutput {
   font-size: 4em;
   color: white;
