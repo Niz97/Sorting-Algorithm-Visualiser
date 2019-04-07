@@ -94,6 +94,28 @@ body {
   margin-top: 2vh;
 }
 
+#bubbleOutput {
+  font-size: 4em;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
+  position: relative;
+  padding: 4vh;
+  padding-bottom: 1vh;
+  margin-top: 2vh;
+}
+
+#selectionSort{
+  font-size: 4em;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
+  position: relative;
+  padding: 4vh;
+  padding-bottom: 1vh;
+  margin-top: 2vh;
+}
+
 #swapLength {
   font-size: 4em;
   color: white;
@@ -189,4 +211,3 @@ body {
   text-align: center;
   position: relative;
 }
-
