@@ -88,7 +88,15 @@ body {
   margin-top: 2vh;
 }
 
-
+#swapLength {
+  font-size: 4em;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
+  position: relative;
+  padding: 4vh;
+  margin-top: 2vh;
+}
 
 .sortheadingwrapper {
   width: 100%;
@@ -174,7 +182,3 @@ body {
   text-align: center;
   position: relative;
 }
-
-
-
-
