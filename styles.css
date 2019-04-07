@@ -69,6 +69,7 @@ body {
 #mycanvas {
 	height: 60vh;
 	position: relative;
+	text-align: centre;
 }
 
 .counterwrapper{
