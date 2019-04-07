@@ -137,6 +137,9 @@ function draw(timestamp)
 	        document.getElementById("bubbleOutput").innerHTML= "Swapping " + swap_info[0] + " and " + swap_info[1];
 			swap_pos_bubb++;
 			//console.log("bubble sort test");
+
+			// output number of swaps
+			document.getElementById("swapLength").innerHTML="Number of swaps: " + swap_pos_bubb;
 		}
 
 	    lastTime = timestamp;
