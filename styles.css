@@ -66,10 +66,14 @@ body {
   right: 0;
 }
 
+.canvaswrapper{
+  text-align: center;
+}
+
 #mycanvas {
-	height: 60vh;
 	position: relative;
-	text-align: centre;
+	text-align: center;
+  display: block;
 }
 
 .counterwrapper{
