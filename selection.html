@@ -6,16 +6,31 @@
 </head>
 <body>
 <div> <h1> Selection sort! </h1> </div>
-<p><a href="index.html">Home</a> 
+<!-- <p><a href="index.html">Home</a> 
 <p><a href="page_two.html">Page 2</a> 
 <p><a href="bubble.html">Bubblesort</a></p>
+ -->
+<ul>
+  <li><a href="index.html">Home</li>
+  <li><a href="page_two.html">Page 2</a></li>
+  <li><a href="bubble.html">Bubblesort</a></li>
+  <li style="float:right"><a class="active" href="#about">About</a></li>
+</ul>
 
 
-<canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;"> </canvas>
 
+<!-- <div id="selectionSort"> </div>
+<div id="swapLength"></div>
+ -->
+<ul id="list">
+  <li id="selectionSort"></li>
+  <br><br>
+  <li id="swapLength"></li>
 
+</ul>
 
-<div id="selectionSort"> </div>
+<div id="canvasWrapper"><canvas id="myCanvas"width="1000" height="600"> </canvas></div>
+
 
 <style type="text/css">
 	canvas {
@@ -24,13 +39,42 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
+    border:1px solid #000000;
     
+ 	
+	}
+	#canvasWrapper {
+		display:inline-block;
+		width: auto;
+		height: auto;
+		float:right;
+	}
 
-}
+	#list {
+		list-style-type: none;
+		margin-top: 100px;
+		display:inline-block;
+		/* removes the indentation*/
+		padding: 0;
+		font-size: 50px;
+	}
 
-	#selectionSort {
-	    font-size: 200px;
-	    }
+	/*#selectionSort {
+	    font-size: 50px;
+	    display: inline-block;
+	    float:left;
+
+
+
+	}
+
+	#swapLength {
+		font-size: 50px;
+		display: inline-block;
+		float:left;*/
+
+
+	}
 
 
 </style>
