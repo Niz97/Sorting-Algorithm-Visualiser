@@ -86,6 +86,7 @@ body {
   text-align: center;
   position: relative;
   padding: 4vh;
+  padding-bottom: 1vh;
   margin-top: 2vh;
 }
 
@@ -96,6 +97,7 @@ body {
   text-align: center;
   position: relative;
   padding: 4vh;
+  padding-top: 1vh;
   margin-top: 2vh;
 }
 
