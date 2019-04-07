@@ -117,7 +117,7 @@ function draw_data(data, offset, colour) {
 }
 
 // keep track of quick sort swaps
-var all_swaps_bubb = [];
+var all_swaps_bubb = []; 
 var swap_pos_bubb = 0;
 
 var lastTime = null;

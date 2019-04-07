@@ -147,11 +147,15 @@ function draw(timestamp)
 	    if (swap_pos_quick < all_swaps_quick.length) {
 	        var swap_info = all_swaps_quick[swap_pos_quick];
 	        swap(swap_info[0], swap_info[1], data_a);
+
+	        // output what bars are currently being swapped
 	        document.getElementById("quickOutput").innerHTML="Swapping " + swap_info[0] + " and " + swap_info[1];
 			swap_pos_quick++;
-			//console.log("quick sort test");
-	    }
 
+			// output number of swaps
+			document.getElementById("swapLength").innerHTML="Number of swaps: " + swap_pos_quick;
+
+	    }
 	    lastTime = timestamp;
 	}
 
