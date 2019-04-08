@@ -124,25 +124,25 @@ body {
 .sortheadingwrapper {
   width: 100%;
   position: relative;
-  top: 1vh;
+  top: 6vh;
   height: 20vh;
   right: 0;
   text-align: center;
+  margin-bottom: 4vh;
 }
 
 .firstsortbox {
   background-color: red;
   position: relative;
-  width: 13vw;
+  width: 18vw;
   float: left;
-  top: 7.5vh;
-  margin-left: 10.3vw;
+  margin-left: 11vw;
   padding-left: 3vw;
   padding-right: 3vw;
 }
 
 .firstsortheading {
-  font-size: 1.5em;
+  font-size: 3em;
   color: white;
   font-family: 'Fjalla One', sans-serif;
   text-align: center;
@@ -150,18 +150,17 @@ body {
 }
 
 .secondsortbox{
-  background-color: red;
+  background-color: blue;
   position: relative;
-  width: 13vw;
+  width: 18vw;
   float: left;
-  top: 7.5vh;
-  margin-left: 1vw;
+  margin-left: 2.5vw;
   padding-left: 3vw;
   padding-right: 3vw;
 }
 
 .secondsortheading{
-  font-size: 1.5em;
+  font-size: 3em;
   color: white;
   font-family: 'Fjalla One', sans-serif;
   text-align: center;
@@ -169,37 +168,17 @@ body {
 }
 
 .thirdsortbox{
-  background-color: red;
+  background-color: #ffa110;
   position: relative;
-  width: 13vw;
+  width: 18vw;
   float: left;
-  top: 7.5vh;
-  margin-left: 1vh;
+  margin-left: 2.5vw;
   padding-left: 3vw;
   padding-right: 3vw; 
 }
 
 .thirdsortheading{
-  font-size: 1.5em;
-  color: white;
-  font-family: 'Fjalla One', sans-serif;
-  text-align: center;
-  position: relative;
-}
-
-.fourthsortbox{
-  background-color: red;
-  position: relative;
-  width: 13vw;
-  float: left;
-  top: 7.5vh;
-  margin-left: 1vh;
-  padding-left: 3vw;
-  padding-right: 3vw; 
-}
-
-.fourthsortheading{
-  font-size: 1.5em;
+  font-size: 3em;
   color: white;
   font-family: 'Fjalla One', sans-serif;
   text-align: center;
