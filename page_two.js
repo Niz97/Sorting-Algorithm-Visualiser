@@ -242,9 +242,8 @@ function draw(timestamp)
 
 
 	draw_data(data_a, 0, "red");
-	draw_data(data_b, screen_width / 4, "blue");
-	draw_data(data_c, screen_width / 2, "green");
-	draw_data(data_d, screen_width / (4/3), "yellow");
+	draw_data(data_b, screen_width / 3, "blue");
+	draw_data(data_c, screen_width / 1.5, "green");
 	
 	requestAnimationFrame(draw);
 }
@@ -259,15 +258,12 @@ window.addEventListener('load', function()
 	screen_width = canvas.width;
 	screen_height = canvas.height;
 
-	column_width = screen_width / max_value / 4;
+	column_width = screen_width / max_value / 3;
 
 
 	data_a = generate_random_array(10);
 	data_b = data_a.slice();
 	data_c = data_a.slice();
-	data_d = data_a.slice();
-	cheese = generate_random_array(10);
-
 
 	//mergeSort(data_a);
 	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
