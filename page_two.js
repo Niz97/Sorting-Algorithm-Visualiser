@@ -243,7 +243,7 @@ function draw(timestamp)
 
 	draw_data(data_a, 0, "red");
 	draw_data(data_b, screen_width / 3, "blue");
-	draw_data(data_c, screen_width / 1.5, "green");
+	draw_data(data_c, screen_width / 1.5, "#ffa110");
 	
 	requestAnimationFrame(draw);
 }
