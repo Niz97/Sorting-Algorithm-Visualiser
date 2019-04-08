@@ -11,11 +11,37 @@ var max_value = 20;
 
 var data_a;
 
+
 function swap(i, j, data) {
     var value = data[i];
 	data[i] = data[j];
     data[j] = value;
 }
+
+
+var exepectedOutput = [1,2,3,4,5];
+
+function selection_test(data, output) {
+	
+	var testData = data;
+	var swapHolder = [];
+	
+	// sort the data
+	selection_sort(testData, swapHolder);
+
+	// compare each element
+	for (var i = 0; i < testData.length; i++) {
+
+		if (testData[i] != exepectedOutput[i]) {return false};
+
+	}
+
+	// if the test above passes return true
+	return true;
+
+}
+
+
 
 
 
@@ -47,6 +73,10 @@ function selection_sort(data, all_swaps)
 	}
 	
 }
+
+
+
+
 
 
 function generate_random_array(size) {
