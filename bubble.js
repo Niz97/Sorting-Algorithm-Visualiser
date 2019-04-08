@@ -17,6 +17,45 @@ function swap(i, j, data) {
     data[j] = value;
 }
 
+
+
+
+
+
+var expectedOutput = [1,2,3,4,5];
+
+function bubble_test(data, output) {
+	
+	var testData = data;
+	var swapHolder = [];
+	
+	// sort the data
+	bubble_sort(testData, swapHolder);
+
+	// compare each element
+	for (var i = 0; i < testData.length; i++) {
+
+		if (testData[i] != expectedOutput[i]) {return false};
+
+	}
+
+	// if the test above passes return true
+	return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 function bubble_sort(data, all_swaps){
     var swapped;
    
