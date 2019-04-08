@@ -18,6 +18,35 @@ function swap(i, j, data) {
 }
 
 
+var expectedOutput = [1,2,3,4,5];
+
+function quicksort_test(data, output) {
+	
+	var testData = data;
+	var swapHolder = [];
+	
+	// sort the data
+	quicksort(testData, 0, testData.length - 1, swapHolder);
+
+	// compare each element
+	for (var i = 0; i < testData.length; i++) {
+
+		if (testData[i] != expectedOutput[i]) {return false};
+
+	}
+
+	// if the test above passes return true
+	return true;
+
+}
+
+
+
+
+
+
+
+
 function quicksort(data, low, high, all_swaps){
     if (low < high) {
     	// store the partition
