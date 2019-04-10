@@ -43,10 +43,6 @@ function quicksort_test(data, output) {
 
 
 
-
-
-
-
 function quicksort(data, low, high, all_swaps){
     if (low < high) {
     	// store the partition
