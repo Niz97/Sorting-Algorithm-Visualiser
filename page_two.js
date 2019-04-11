@@ -55,7 +55,7 @@ function partition(data, low, high, all_swaps) {
     return i + 1;
 }
 
-function insertion_sort(data, all_swaps)
+function selection_sort(data, all_swaps)
 {
     for (var i = 0; i < data.length - 1; i++)
     {
@@ -69,7 +69,7 @@ function insertion_sort(data, all_swaps)
             {
                 // new smallest so far
                 min_pos = j;
-                console.log("New smallest min_pos: " + min_pos);
+                //console.log("New smallest min_pos: " + min_pos);
             }
         }
         // min_pos now holds position of smallest value in the list (from i)
@@ -198,8 +198,8 @@ var swap_pos_quick = 0;
 var all_swaps_bubb = [];
 var swap_pos_bubb = 0;
 
-var all_swaps_insert = [];
-var swap_pos_insert = 0;
+var all_swaps_selection = [];
+var swap_pos_selection = 0;
 
 var lastTime = null;
 function draw(timestamp)
@@ -228,10 +228,10 @@ function draw(timestamp)
 		}
 
 		// inserion sort | data_c
-		if (swap_pos_insert < all_swaps_insert.length) {
-			var swap_info = all_swaps_insert[swap_pos_insert];
+		if (swap_pos_selection < all_swaps_selection.length) {
+			var swap_info = all_swaps_selection[swap_pos_selection];
 	        swap(swap_info[0], swap_info[1], data_c);
-			swap_pos_insert++;
+			swap_pos_selection++;
 
 	    }
 
@@ -268,8 +268,8 @@ window.addEventListener('load', function()
 	//mergeSort(data_a);
 	quicksort(data_a.slice(), 0, data_a.length - 1, all_swaps_quick);
 	bubble_sort(data_b.slice(), all_swaps_bubb);
-	insertion_sort(data_c.slice(), all_swaps_insert);
-	//insertion_sort(data_c.slice(), all_swaps_insert);
+	selection_sort(data_c.slice(), all_swaps_selection);
+	
 
 	
 	draw();
